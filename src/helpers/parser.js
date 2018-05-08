@@ -3,12 +3,13 @@ import request from 'request';
 import cheerio from 'cheerio';
 import sanitizeFile from 'sanitize-filename';
 
-function createEvent(item) {
-    let event = {};
-    event.url = item.attr('href');
-    event.title = item.find('.vergadering_lijst_item').text().trim();
-    event.date = item.find('.datum').text().trim();
-    return event;
+function createMeeting(item) {
+    let meeting = {};
+    meeting.url = item.attr('href');
+    meeting.title = sanitize(item.find('.vergadering_lijst_item').text());
+    meeting.date = sanitize(item.find('.datum').text());
+    meeting.id = `${meeting.date}-${meeting.title}`;
+    return meeting;
 }
 
 export function getMeetings(url) {
@@ -18,24 +19,24 @@ export function getMeetings(url) {
                 reject(error);
             } else {
                 const $ = cheerio.load(html);
-                let events = {past: [], upcoming: []};
+                let meetings = {past: [], upcoming: []};
                 $('#recente_vergaderingen').find('.content').find('ul').children().each((x, elem) => {
                     const item = $(elem).find('a');
-                    let event = createEvent(item);
-                    if (event.date) {
-                        events.past.push(event);
+                    let meeting = createMeeting(item);
+                    if (meeting.date) {
+                        meetings.past.push(meeting);
                     }
                 });
 
                 $('#toekomstige_vergaderingen').find('.content').find('ul').children().each((x, elem) => {
                     const item = $(elem).find('a');
-                    let event = createEvent(item);
-                    if (event.date) {
-                        events.upcoming.push(event);
+                    let meeting = createMeeting(item);
+                    if (meeting.date) {
+                        meetings.upcoming.push(meeting);
                     }
                 });
 
-                fulfill(events);
+                fulfill(meetings);
             }
         });
     });
@@ -92,7 +93,7 @@ export function getAgenda(meeting) {
                 agenda.pdfForm.export_type = 'event';
                 const entityIdRegex = /entity_id\s?:\s?"(.*)"/gi;
                 const entityId = entityIdRegex.exec($.html());
-                agenda.pdfForm.selected_items = entityId[1] || null;
+                agenda.pdfForm.selected_items = entityId[1] || "";
                 agenda.pdfForm.url = $('#export_form').attr('action');
 
 
@@ -119,30 +120,3 @@ export function getAgenda(meeting) {
 function sanitize(string){
     return sanitizeFile(string.trim().replace(/"g/, "'"));
 }
-
-
-ipcMain.on('get-events', async (event, args) => {
-    let events = await getEvents(config.eventsPage).catch((reason) => {
-        console.error('SOMETHING WENT WRONG!!!');
-        console.error(reason);
-        event.sender.send('get-events-error', reason);
-    });
-    console.log(events);
-    if (events){
-        event.sender.send('get-events-done', events);
-    }
-});
-
-ipcMain.on('get-single-event', async (event, args) => {
-    let data = {};
-    data.event = args;
-    data.agenda = await getAgenda(args).catch((reason) => {
-        console.error(reason);
-        event.sender.send('get-single-event-error', reason);
-    });
-    data.subjects = await getSubjects(args).catch((reason) => {
-        console.error(reason);
-        event.sender.send('get-single-event-error', reason);
-    });
-    event.sender.send('get-single-event-done', data);
-});
