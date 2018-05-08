@@ -6,6 +6,7 @@ const store = new Store();
 import readChunk from 'read-chunk';
 import fileType from 'file-type';
 import fs from 'fs';
+import {openDialog} from './fileSystem';
 
 let activeDownloads = [];
 let downloads = [];
@@ -19,27 +20,38 @@ export function getDownloads() {
 }
 
 export async function downloadMeeting(event, args) {
+
+    let rootFolder = store.has('folder') && store.get('folder') ? `${store.get('folder')}/` : null;
+
+    if (!rootFolder || !fs.existsSync(rootFolder)){
+        openDialog({}, (folderPaths) => {
+            if (folderPaths && folderPaths[0]) {
+                store.set('folder', folderPaths[0]);
+                rootFolder = folderPaths[0];
+                startDownload(event, args, rootFolder);
+            } else {
+                event.sender.send('no-download-folder');
+            }
+        });
+    } else {
+        startDownload(event, args, rootFolder);
+    }
+
+}
+
+async function startDownload(event, args, rootFolder){
     const agenda = args.agenda;
     const selectedEvent = args.meeting;
     const subjects = args.subjects;
     const date = moment(selectedEvent.date, 'DD-MM-YYYY').format('YYYY-MM-DD');
-    const rootFolder = store.has('folder') && store.get('folder') ? `${store.get('folder')}/` : '';
     const folder = `${rootFolder}${date} ${selectedEvent.title}`;
+
     args.folder = folder;
     activeDownloads.push(args);
     event.sender.send('download-meeting-start', {active: activeDownloads, finished: downloads});
-    await downloadAsync(folder, agenda, subjects);
 
-    if (!downloads.includes(args)){
-        downloads.push(args);
-    }
-    activeDownloads.splice(activeDownloads.indexOf(args), 1);
-    event.sender.send('download-meeting-done', {active: activeDownloads, finished: downloads});
-}
 
-async function downloadAsync(folder, agenda, subjects) {
     await downloadDocuments(`${folder}/0 Agenda`, agenda.attachments);
-
 
     await download(agenda.pdfForm.url, `${folder}/0 Agenda`, {filename: 'Agenda.pdf', method:"POST", form:true, body:agenda.pdfForm}).then(() => {
         console.log('DONE DOWNLOADING AGENDA');
@@ -47,6 +59,13 @@ async function downloadAsync(folder, agenda, subjects) {
     for (let i = 0; i < subjects.length; i++){
         await downloadDocuments(`${folder}/${subjects[i].title}`, subjects[i].documents);
     }
+
+    if (downloads.filter(item => item.meeting.id === args.meeting.id).length === 0) {
+        downloads.push(args);
+    }
+
+    activeDownloads.splice(activeDownloads.indexOf(args), 1);
+    event.sender.send('download-meeting-done', {active: activeDownloads, finished: downloads});
 }
 
 function downloadDocuments(folder, documents){
