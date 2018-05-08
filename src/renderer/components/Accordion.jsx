@@ -3,7 +3,7 @@ import {createClassNames} from './util';
 
 export class Accordion extends React.Component {
     componentDidMount() {
-        $('.accordion').foundation();
+        $(this.accordion).foundation();
     }
 
     componentDidUpdate(oldValue, newValue) {
@@ -13,7 +13,7 @@ export class Accordion extends React.Component {
     render() {
         const classes = createClassNames(this.props);
         return (
-            <ul {...this.props} className={`accordion ${classes}`} data-accordion>
+            <ul {...this.props} className={`accordion ${classes}`} data-accordion ref={c => this.accordion = c}>
                 {this.props.children || []}
             </ul>
         );
