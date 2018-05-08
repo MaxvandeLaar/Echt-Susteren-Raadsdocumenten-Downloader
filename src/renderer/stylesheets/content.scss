@@ -1,0 +1,12 @@
+@import "partials/colors";
+
+#content {
+    padding:1em;
+}
+
+@media (min-width: 40em) {
+    #content {
+        height: calc(100vh - 56px);
+        overflow-y:auto;
+    }
+}

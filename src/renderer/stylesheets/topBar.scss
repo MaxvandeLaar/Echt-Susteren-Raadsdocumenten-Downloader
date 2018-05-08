@@ -1,0 +1,11 @@
+@import "partials/colors";
+
+#top-bar {
+    background-color: $secondary-color;
+    padding:0.5em;
+    min-height:52px;
+
+    #download-meeting:hover, #download-meeting:active, #download-meeting:focus {
+        color:$primary-color;
+    }
+}

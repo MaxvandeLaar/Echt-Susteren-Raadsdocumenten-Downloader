@@ -1,0 +1,58 @@
+@import "partials/colors";
+
+#settings-bar{
+    min-height:52px;
+    background-color:$fourth-color;
+    padding:0.75em;
+
+    //.icon-container {
+    //    margin-left:1em;
+    //    #download-counter {
+    //        top:-0.4em;
+    //        right:-0.4em;
+    //    }
+    //}
+
+    a:hover, a:active, a:focus {
+        color:$primary-color;
+    }
+}
+
+.download-list-cell {
+    border-bottom: 1px solid $black;
+}
+
+.download-list-cell:last-child {
+    border-bottom: none;
+}
+
+#side-bar {
+    background-color:$primary-color;
+    padding:0 1em;
+    .button {
+        width:100%;
+        text-align: left;
+    }
+
+
+
+
+
+
+    //
+    //#refresh {
+    //    margin-top:5px;
+    //    margin-right:5px;
+    //}
+    //#selectFolder {
+    //    margin-top:5px;
+    //    margin-right:5px;
+    //}
+}
+
+@media (min-width: 40em) {
+    #side-bar {
+        height: calc(100vh - 56px);
+        overflow-y:auto;
+    }
+}

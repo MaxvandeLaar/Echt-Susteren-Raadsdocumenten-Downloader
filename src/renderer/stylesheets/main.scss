@@ -1,0 +1,40 @@
+@import "partials/colors.scss";
+@include foundation-everything;
+
+@import "sideBar";
+@import "topBar";
+@import "content";
+
+body {
+    overflow-x:hidden;
+}
+
+.text-primary {
+    color:$primary-color;
+}
+
+.text-secondary {
+    color:$secondary-color;
+}
+
+.text-third {
+    color: $third-color;
+}
+
+.text-fourth {
+    color:$fourth-color;
+}
+
+.text-fifth {
+    color:$fifth-color;
+}
+
+.text-white {
+    color:$white;
+}
+
+@media (min-width: 40em) {
+    body {
+        overflow-y: hidden;
+    }
+}
