@@ -5,16 +5,14 @@
     background-color:$fourth-color;
     padding:0.75em;
 
-    //.icon-container {
-    //    margin-left:1em;
-    //    #download-counter {
-    //        top:-0.4em;
-    //        right:-0.4em;
-    //    }
-    //}
 
     a:hover, a:active, a:focus {
         color:$primary-color;
+    }
+    #download-counter {
+        top:-0.25em;
+        right:-0.25em;
+        background-color:$secondary-color;
     }
 }
 
