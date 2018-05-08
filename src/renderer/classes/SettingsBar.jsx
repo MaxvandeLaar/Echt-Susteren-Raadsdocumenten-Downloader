@@ -2,11 +2,12 @@ import React from 'react';
 import 'foundation-sites/dist/js/foundation';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {ipcRenderer, shell} from 'electron';
+import {Reveal, RevealCloseButton} from '../components/Reveal';
 
 export default class SettingsBar extends React.Component {
-    componentDidMount() {
-        $(document).foundation();
-    }
+    // componentDidMount() {
+    //     $(document).foundation();
+    // }
     render() {
         const activeDownloadsCount = this.props.downloads.active.length;
         return (
@@ -21,7 +22,7 @@ export default class SettingsBar extends React.Component {
                     </span>
                 </div>
                 <div className="cell small-2">
-                    <span className="fa-layers fa-fw icon-container" data-open="download-list" id="preferences">
+                    <span className="fa-layers fa-fw icon-container" data-open="about-reveal" id="preferences">
                         <a className="text-white">
                             <FontAwesomeIcon icon={['fas', 'info-circle']} style={{fontSize:'1.5em'}}/>
                         </a>
@@ -44,15 +45,18 @@ export default class SettingsBar extends React.Component {
                         </span>
                     </div>
                 </a>
-                <div className="reveal" id="download-list" data-reveal>
+                <Reveal id={`about-reveal`}>
+                    <h4>Test</h4>
+                    <RevealCloseButton/>
+                </Reveal>
+
+                <Reveal id="download-list">
                     <h4>{this.props.downloads.active.length > 0?'Actief':''}</h4>
                     <Downloads list={this.props.downloads.active}/>
                     <h4>Gedownload</h4>
                     <Downloads list={this.props.downloads.finished}/>
-                    <button className="close-button" data-close="" aria-label="Sluit" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <RevealCloseButton/>
+                </Reveal>
             </div>
         );
     }
