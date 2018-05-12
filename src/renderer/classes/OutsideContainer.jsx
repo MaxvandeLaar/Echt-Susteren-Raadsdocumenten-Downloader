@@ -48,7 +48,8 @@ export default class OutsideContainer extends React.Component {
                                 <h4>Informatie</h4>
                                 <a href={"https://github.com/MaxvandeLaar/Echt-Susteren-Raadsdocumenten-Downloader"} className={"js-external-link"}><FontAwesomeIcon icon={["fab", "github"]}/> Github</a><br/>
                                 <a href={"https://www.maxvandelaar.com"} className={"js-external-link"}><FontAwesomeIcon icon={"globe"}/> www.maxvandelaar.com</a><br/>
-                                <lead><FontAwesomeIcon icon={"copyright"}/> 2018, <author>Max van de Laar</author></lead>
+                                <lead><FontAwesomeIcon icon={"copyright"}/> 2018, <author>Max van de Laar</author></lead><br/>
+                                <lead>Versie {manifest.version}</lead>
                             </div>
                         </div>
                     </div>
