@@ -19,6 +19,5 @@ export default class SideBar extends React.Component {
 }
 
 function selectFolder() {
-    console.log('select Folder');
     ipcRenderer.send('open-dialog');
 }

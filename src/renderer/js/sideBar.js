@@ -6,7 +6,7 @@ import {ipcRenderer} from "electron";
 import OutsideContainer from '../classes/OutsideContainer';
 
 export function renderSidebar (meetings) {
-    console.log('meetings', meetings);
+    // console.log('meetings', meetings);
     ReactDOM.render(<SideBar meetings={meetings}/>, document.getElementById('side-bar'));
     ReactDOM.render(<OutsideContainer downloads={{active:[], finished:[]}}/>, document.getElementById('off-canvas-container'));
 

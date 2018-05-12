@@ -1,7 +1,7 @@
 import {openDialog} from '../helpers/fileSystem';
 
 export const editMenuTemplate = {
-  label: 'Edit',
+  label: 'File',
   submenu: [
     {
       label: 'Instellingen', accelerator: 'CmdOrCtrl+,', click: (item, currentWindow) => {

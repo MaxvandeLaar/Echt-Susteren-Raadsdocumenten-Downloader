@@ -15,7 +15,7 @@ const setApplicationMenu = () => {
   if (env.name !== "production") {
     menus.push(devMenuTemplate);
   }
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
+  // Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
 };
 
 // Save userData in separate folders for each environment.

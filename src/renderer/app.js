@@ -47,5 +47,5 @@ ReactDOM.render(elem, document.getElementById('content'));
 // document.querySelector('#env').innerHTML = env.name;
 // document.querySelector('#electron-version').innerHTML = process.versions.electron;
 
-console.log(manifest.version);
+// console.log(manifest.version);
 
