@@ -6,12 +6,13 @@
   <script>window.$ = window.jQuery = require('jquery');</script>
 </head>
 <body>
-<div class="grid-container full">
+<div id="off-canvas-container"></div>
+<div class="grid-container full off-canvas-content" data-off-canvas-content>
   <div class="grid-x">
     <div class="cell medium-5 large-3">
-      <div className="grid-y full">
-        <div className="cell" id="settings-bar"></div>
-        <div className="cell" id="side-bar"></div>
+      <div class="grid-y full">
+        <div class="cell" id="settings-bar"></div>
+        <div class="cell" id="side-bar"></div>
       </div>
     </div>
     <div class="cell medium-7 large-9">

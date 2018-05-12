@@ -1,5 +1,10 @@
 @import "partials/colors";
 
+
+#download-canvas{
+    background-color: $white;
+}
+
 #settings-bar{
     min-height:52px;
     background-color:$fourth-color;
@@ -14,6 +19,8 @@
         right:-0.25em;
         background-color:$secondary-color;
     }
+
+
 }
 
 .download-list-cell {
@@ -50,7 +57,7 @@
 
 @media (min-width: 40em) {
     #side-bar {
-        height: calc(100vh - 56px);
+        height: calc(100vh - 52px);
         overflow-y:auto;
     }
 }

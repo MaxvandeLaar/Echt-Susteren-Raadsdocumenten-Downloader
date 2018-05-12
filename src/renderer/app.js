@@ -2,7 +2,7 @@ import './stylesheets/main.scss';
 // Small helpers you might want to keep
 import '../helpers/context_menu.js';
 import '../helpers/external_links.js';
-import {remote, ipcRenderer} from 'electron';
+import {remote} from 'electron';
 import jetpack from 'fs-jetpack';
 import env from 'env';
 import fontawesome from '@fortawesome/fontawesome';

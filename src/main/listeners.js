@@ -1,11 +1,19 @@
 import {ipcMain} from 'electron';
-import {openDialog} from '../helpers/fileSystem';
+import {getFolder, openDialog} from '../helpers/fileSystem';
 import {getMeetings, getAgenda, getSubjects} from '../helpers/parser';
 import {downloadMeeting, getActiveDownloads, getDownloads} from '../helpers/download';
 import env from 'env';
+import Store from 'electron-store';
+const store = new Store();
 
 ipcMain.on('open-dialog', (event, args) => {
-    openDialog();
+    const callback = (folderPaths) => {
+        if (folderPaths && folderPaths[0]) {
+            store.set('folder', folderPaths[0]);
+            event.sender.send('folder-stored', folderPaths[0]);
+        }
+    };
+    openDialog({}, callback);
 });
 
 ipcMain.on('get-meetings', (event, args) => {
@@ -32,4 +40,8 @@ ipcMain.on('download-meeting', (event, args) => {
 
 ipcMain.on('get-downloads', (event, args) => {
     event.returnValue = {active:getActiveDownloads(), finished: getDownloads()};
+});
+
+ipcMain.on('get-folder', (event, args) => {
+    event.returnValue = getFolder();
 });

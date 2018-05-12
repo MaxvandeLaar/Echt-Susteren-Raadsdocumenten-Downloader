@@ -1,15 +1,15 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "description": "Starter for your Electron application",
+  "name": "echt-susteren-raadsdocumenten",
+  "productName": "Echt-Susteren Raadsdocumenten",
+  "description": "Makkelijk raadsdocumenten downloaden vanaf de Echt-Susteren website",
   "version": "0.0.0",
   "private": true,
-  "author": "Mr. Gumby <mr.gumby@example.com>",
-  "copyright": "© 2017, Gumby inc.",
-  "homepage": "http://example.com",
+  "author": "Max van de Laar <max.vandelaar@me.com>",
+  "copyright": "© 2018.",
+  "homepage": "https://www.maxvandelaar.com",
   "main": "app/background.js",
   "build": {
-    "appId": "com.example.electron-boilerplate",
+    "appId": "com.maxvandelaar.echt-susteren-raadsdocumenten",
     "files": [
       "app/**/*",
       "node_modules/**/*",
