@@ -8,10 +8,15 @@ import env from 'env';
 import fontawesome from '@fortawesome/fontawesome';
 import solids from '@fortawesome/fontawesome-free-solid';
 import regulars from '@fortawesome/fontawesome-free-regular';
+import brands from '@fortawesome/fontawesome-free-brands';
 import './js/listeners';
 import {loadMeetings} from './js/sideBar';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-fontawesome.library.add(solids, regulars);
+
+fontawesome.library.add(solids, regulars, brands);
 
 const app = remote.app;
 const appDir = jetpack.cwd(app.getAppPath());
@@ -20,6 +25,12 @@ const manifest = appDir.read('package.json', 'json');
 
 
 loadMeetings();
+const elem = <div className="grid-y">
+    <div className="cell text-center"><p>Kies een vergadering uit de lijst!</p></div>
+    <div className="cell text-center"><FontAwesomeIcon icon={"arrow-circle-left"} size={"10x"}/></div>
+
+</div>;
+ReactDOM.render(elem, document.getElementById('content'));
 
 
 

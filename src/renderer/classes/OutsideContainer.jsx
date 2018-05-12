@@ -38,8 +38,17 @@ export default class OutsideContainer extends React.Component {
                         </div>
                         <div className={"cell medium-12"}>
                             <div className={"callout"}>
+                                <h4>Gemeente</h4>
+                                <a href={"https://echt-susteren.nl/"} target={"_blank"} className={"js-external-link"}><FontAwesomeIcon icon={"globe"}/> Echt-Susteren</a><br/>
+                                <a href={"https://echt-susteren.raadsinformatie.nl/"} className={"js-external-link"}><FontAwesomeIcon icon={"globe"}/> Raadsinformatie</a>
+                            </div>
+                        </div>
+                        <div className={"cell medium-12"}>
+                            <div className={"callout"}>
                                 <h4>Informatie</h4>
-                                <lead>Gemaakt door {manifest.author}</lead>
+                                <a href={"https://github.com/MaxvandeLaar/Echt-Susteren-Raadsdocumenten-Downloader"} className={"js-external-link"}><FontAwesomeIcon icon={["fab", "github"]}/> Github</a><br/>
+                                <a href={"https://www.maxvandelaar.com"} className={"js-external-link"}><FontAwesomeIcon icon={"globe"}/> www.maxvandelaar.com</a><br/>
+                                <lead><FontAwesomeIcon icon={"copyright"}/> 2018, <author>Max van de Laar</author></lead>
                             </div>
                         </div>
                     </div>
