@@ -10,6 +10,7 @@ import {autoUpdater} from 'electron-updater';
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 import env from 'env';
+import provider from 'provider';
 
 const setApplicationMenu = () => {
     const menus = [editMenuTemplate];
@@ -28,6 +29,7 @@ if (env.name !== 'production') {
 }
 
 app.on('ready', () => {
+    autoUpdater.setFeedURL(provider);
     autoUpdater.checkForUpdatesAndNotify();
     setApplicationMenu();
 

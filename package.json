@@ -16,6 +16,9 @@
       "node_modules/**/*",
       "package.json"
     ],
+    "mac": {
+      "identity": null
+    },
     "directories": {
       "buildResources": "resources"
     },
@@ -29,7 +32,7 @@
     "e2e": "mocha temp/e2e.js --require source-map-support/register",
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
-    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder -c.mac.identity=null"
+    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
