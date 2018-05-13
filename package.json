@@ -33,7 +33,7 @@
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder",
-    "publish": "build -p always"
+    "publish": "-p always"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
