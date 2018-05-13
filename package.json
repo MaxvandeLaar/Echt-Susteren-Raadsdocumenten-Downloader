@@ -27,7 +27,7 @@
     "directories": {
       "buildResources": "resources"
     },
-    "publish": null
+    "publish": ["github"]
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
