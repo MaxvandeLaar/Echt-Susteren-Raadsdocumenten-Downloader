@@ -18,8 +18,7 @@
     ],
     "mac": {
       "target": [
-        "zip",
-        "dmg"
+        "zip"
       ],
       "category": "public.app-category.utilities"
     },
@@ -47,6 +46,7 @@
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder",
+    "releaseAll": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder -mwl",
     "github": "build -p always"
   },
   "dependencies": {
