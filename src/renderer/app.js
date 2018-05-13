@@ -15,13 +15,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-
 fontawesome.library.add(solids, regulars, brands);
 
-const app = remote.app;
-const appDir = jetpack.cwd(app.getAppPath());
-
-const manifest = appDir.read('package.json', 'json');
+// const app = remote.app;
+// const appDir = jetpack.cwd(app.getAppPath());
+// const manifest = appDir.read('package.json', 'json');
 
 
 loadMeetings();

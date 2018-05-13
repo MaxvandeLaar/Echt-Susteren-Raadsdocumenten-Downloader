@@ -5,13 +5,12 @@ import {devMenuTemplate} from '../menu/dev_menu_template';
 import {editMenuTemplate} from '../menu/edit_menu_template';
 import createWindow from '../helpers/window';
 import './listeners';
-const log = require('electron-log');
+import log from 'electron-log';
 import {autoUpdater} from 'electron-updater';
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 import env from 'env';
-import provider from 'provider';
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
