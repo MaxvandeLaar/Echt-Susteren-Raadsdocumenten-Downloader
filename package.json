@@ -32,7 +32,7 @@
       "target": [
         "AppImage"
       ]
-    }
+    },
     "directories": {
       "buildResources": "resources"
     },
