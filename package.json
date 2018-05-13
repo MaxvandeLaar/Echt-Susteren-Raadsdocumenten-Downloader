@@ -2,7 +2,7 @@
   "name": "echt-susteren-raadsdocumenten",
   "productName": "Echt-Susteren Raadsdocumenten",
   "description": "Makkelijk raadsdocumenten downloaden vanaf de Echt-Susteren website",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "private": false,
   "author": "Max van de Laar <max.vandelaar@me.com>",
   "copyright": "© 2018.",
@@ -18,8 +18,8 @@
     ],
     "mac": {
       "target": [
-        "dmg",
-        "zip"
+        "zip",
+        "dmg"
       ],
       "category": "public.app-category.utilities",
       "identity": null
