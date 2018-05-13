@@ -2,7 +2,7 @@
   "name": "echt-susteren-raadsdocumenten",
   "productName": "Echt-Susteren Raadsdocumenten",
   "description": "Makkelijk raadsdocumenten downloaden vanaf de Echt-Susteren website",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": false,
   "author": "Max van de Laar <max.vandelaar@me.com>",
   "copyright": "© 2018.",
@@ -32,8 +32,7 @@
     "e2e": "mocha temp/e2e.js --require source-map-support/register",
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
-    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder",
-    "publish": "-p always"
+    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
