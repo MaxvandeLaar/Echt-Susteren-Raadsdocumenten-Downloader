@@ -6,6 +6,7 @@ const store = new Store();
 import readChunk from 'read-chunk';
 import fileType from 'file-type';
 import fs from 'fs';
+import path from 'path';
 import {openDialog} from './fileSystem';
 import log from 'electron-log';
 
@@ -37,7 +38,6 @@ export async function downloadMeeting(event, args) {
     } else {
         startDownload(event, args, rootFolder);
     }
-
 }
 
 async function startDownload(event, args, rootFolder){
@@ -46,7 +46,7 @@ async function startDownload(event, args, rootFolder){
     const selectedEvent = args.meeting;
     const subjects = args.subjects;
     const date = moment(selectedEvent.date, 'DD-MM-YYYY').format('YYYY-MM-DD');
-    const folder = `${rootFolder}${date} ${selectedEvent.title}`;
+    const folder = path.normalize(`${rootFolder}/${date} ${selectedEvent.title}`);
 
     log.info(`Download to folder ${folder}`);
     args.folder = folder;
@@ -64,6 +64,11 @@ async function startDownload(event, args, rootFolder){
 
     if (downloads.filter(item => item.meeting.id === args.meeting.id).length === 0) {
         downloads.push(args);
+    } else {
+        const indexOf = downloads.map(item => { return item.meeting.id}).indexOf(args.meeting.id);
+        if (indexOf){
+            downloads[indexOf].folder = args.folder;
+        }
     }
 
     log.info('Done downloading, send event download-meeting-done');
